@@ -1,0 +1,76 @@
+# XONSH WEBCONFIG START
+# XONSH WEBCONFIG END
+
+import xonsh
+xontrib load z argcomplete coreutils fzf-widgets jedi
+
+$DEVICE_SSH_PORT = 2222
+$PROMPT = '{env_name}{BOLD_GREEN}{user}@{hostname}{BOLD_BLUE} {cwd}{branch_color}{curr_branch: {}}{RESET} {BOLD_BLUE}{prompt_end}{RESET} '
+$PATH = ['/usr/local/opt/openjdk/bin',
+ '/usr/local/opt/openssl@1.1/bin',
+ '/Library/Frameworks/Python.framework/Versions/3.10/bin',
+ '/usr/local/bin',
+ '/usr/bin',
+ '/bin',
+ '/usr/sbin',
+ '/sbin',
+ '/Library/Apple/usr/bin',
+ '/Applications/Wireshark.app/Contents/MacOS',
+ '/usr/local/opt/fzf/bin',
+ '/Users/z/Library/Python/3.9/bin',
+ '/opt/bin',
+ '/Users/z/Library/Python/3.8/bin',
+ '/Users/z/Library/Python/3.10/bin']
+
+
+$fzf_history_binding = "c-r"  # Ctrl+R
+$fzf_ssh_binding = "c-s"      # Ctrl+S
+$fzf_file_binding = "c-t"      # Ctrl+T
+$fzf_dir_binding = "c-g"      # Ctrl+G
+
+aliases['reload'] = 'source ~/.xonshrc'
+
+
+def _get_file(args):
+    scp -i "~/.ssh/id_rsa" -r -P $DEVICE_SSH_PORT root@localhost:@(args[0]) @(args[1])
+
+
+def _put_file(args):
+    scp -i "~/.ssh/id_rsa" -r -P $DEVICE_SSH_PORT @(args[0]) root@localhost:@(args[1])
+
+
+def _localdevice(args):
+    ssh -p $DEVICE_SSH_PORT root@localhost -i ~/.ssh/id_rsa
+
+
+def _ggpush(args):
+	git push --set-upstream origin @(xonsh.built_ins.XSH.env['PROMPT_FIELDS']['curr_branch']())
+
+
+# -- xonsh
+
+aliases['reload'] = 'source ~/.xonshrc'
+aliases['rc'] = 'subl ~/.xonshrc'
+
+# -- apps
+
+aliases['subl'] = 'open -a "Sublime Text"'
+aliases['code'] = 'open -a "Visual Studio Code"'
+aliases['010'] = 'open -a "010 Editor"'
+
+# -- checkra!n
+
+aliases['get_file'] = _get_file
+aliases['put_file'] = _put_file
+aliases['localdevice'] = _localdevice
+
+# -- git
+
+aliases['ga'] = 'git add'
+aliases['ggpush'] = _ggpush
+aliases['gco'] = 'git checkout'
+aliases['ggpull'] = 'git pull'
+aliases['glog'] = 'git log --oneline --decorate --graph'
+aliases['gd'] = 'git diff'
+aliases['gst'] = 'git status'
+aliases['gcl'] = 'git clone --recurse-submodules'
