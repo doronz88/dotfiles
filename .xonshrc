@@ -44,7 +44,7 @@ def _localdevice(args):
 
 
 def _ggpush(args):
-	git push --set-upstream origin @(xonsh.built_ins.XSH.env['PROMPT_FIELDS']['curr_branch']())
+	git push origin @(xonsh.built_ins.XSH.env['PROMPT_FIELDS']['curr_branch']())
 
 
 # -- xonsh
@@ -54,11 +54,14 @@ aliases['rc'] = 'subl ~/.xonshrc'
 
 # -- apps
 
-aliases['subl'] = 'open -a "Sublime Text"'
-aliases['code'] = 'open -a "Visual Studio Code"'
-aliases['010'] = 'open -a "010 Editor"'
+aliases['subl'] = 'open -b com.sublimetext.3'
+aliases['code'] = 'open -b com.microsoft.VSCode'
+aliases['010'] = 'open -b com.SweetScape.010Editor'
+aliases['charm'] = 'open -b com.jetbrains.pycharm.ce'
+aliases['ida'] = 'open -b com.hexrays.ida64'
+aliases['sqlitebrwoser'] = 'open -a sqlitebrowser'
 
-# -- checkra!n
+# -- checkra1n
 
 aliases['get_file'] = _get_file
 aliases['put_file'] = _put_file
