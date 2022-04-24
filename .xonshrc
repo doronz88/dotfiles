@@ -1,6 +1,9 @@
 # XONSH WEBCONFIG START
 # XONSH WEBCONFIG END
 
+import os
+from argparse import ArgumentParser
+
 import xonsh
 xontrib load z argcomplete coreutils fzf-widgets jedi
 
@@ -47,14 +50,42 @@ def _ggpush(args):
 	git push origin @(xonsh.built_ins.XSH.env['PROMPT_FIELDS']['curr_branch']())
 
 
+def _subl(args):
+    if 0 != os.system(f'open -b com.sublimetext.4 "{args[0]}"'):
+        os.system(f'open -b com.sublimetext.3 "{args[0]}"')
+
+
+def _rcpull(args):
+    parser = ArgumentParser(description='pull latest .xonshrc')
+    args = parser.parse_args(args)
+
+    cd ~/dev/dotfiles
+    ggpull
+    cp ~/.xonshrc ~/
+    cd -
+
+
+def _rcpush(args):
+    parser = ArgumentParser(description='push latest .xonshrc')
+    args = parser.parse_args(args)
+
+    cd ~/dev/dotfiles
+    cp ~/.xonshrc .
+    ga .xonshrc
+    git commit -m 'update .xonshrc'
+    ggpush
+    cd -
+
 # -- xonsh
 
 aliases['reload'] = 'source ~/.xonshrc'
 aliases['rc'] = 'subl ~/.xonshrc'
+aliases['rcpull'] = _rcpull
+aliases['rcpush'] = _rcpush
 
 # -- apps
 
-aliases['subl'] = 'open -b com.sublimetext.3'
+aliases['subl'] = _subl
 aliases['code'] = 'open -b com.microsoft.VSCode'
 aliases['010'] = 'open -b com.SweetScape.010Editor'
 aliases['charm'] = 'open -b com.jetbrains.pycharm.ce'
