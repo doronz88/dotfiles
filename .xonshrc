@@ -5,7 +5,7 @@ import os
 from argparse import ArgumentParser
 
 import xonsh
-xontrib load z argcomplete coreutils fzf-widgets jedi prompt_ret_code vox
+xontrib load z argcomplete coreutils fzf-widgets jedi prompt_ret_code vox up
 
 # $DEVICE_SSH_PORT = 2222
 $DEVICE_SSH_PORT = 4444
@@ -89,7 +89,7 @@ aliases['rcpush'] = _rcpush
 aliases['subl'] = _subl
 aliases['code'] = 'open -b com.microsoft.VSCode'
 aliases['010'] = 'open -b com.SweetScape.010Editor'
-aliases['charm'] = 'open -b com.jetbrains.pycharm.ce'
+aliases['charm'] = 'open -b com.jetbrains.pycharm.ce || open -b com.jetbrains.pycharm'
 aliases['ida'] = 'open -b com.hexrays.ida64'
 aliases['sqlitebrwoser'] = 'open -a sqlitebrowser'
 
