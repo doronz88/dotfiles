@@ -5,7 +5,7 @@ import os
 from argparse import ArgumentParser
 
 import xonsh
-xontrib load z argcomplete coreutils fzf-widgets jedi prompt_ret_code vox up
+xontrib load z argcomplete coreutils fzf-widgets jedi prompt_ret_code vox up z
 
 # $DEVICE_SSH_PORT = 2222
 $DEVICE_SSH_PORT = 4444
