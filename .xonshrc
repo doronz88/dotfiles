@@ -18,13 +18,14 @@ $PATH = ['/usr/local/opt/openjdk/bin',
  '/bin',
  '/usr/sbin',
  '/sbin',
+ '/opt/bin',
  '/Library/Apple/usr/bin',
  '/Applications/Wireshark.app/Contents/MacOS',
  '/usr/local/opt/fzf/bin',
- '/Users/z/Library/Python/3.9/bin',
- '/opt/bin',
- '/Users/z/Library/Python/3.8/bin',
- '/Users/z/Library/Python/3.10/bin']
+ '~/Library/Python/3.9/bin',
+ '~/Library/Python/3.8/bin',
+ '~/Library/Python/3.10/bin',
+ '/usr/local/opt/python@3.10/bin']
 
 
 $fzf_history_binding = "c-r"  # Ctrl+R
