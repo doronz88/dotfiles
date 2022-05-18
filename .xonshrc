@@ -52,6 +52,10 @@ def _ggpush(args):
 	git push origin @(xonsh.built_ins.XSH.env['PROMPT_FIELDS']['curr_branch']())
 
 
+def _ggpull(args):
+    git pull origin @(xonsh.built_ins.XSH.env['PROMPT_FIELDS']['curr_branch']())
+
+
 def _subl(args):
     if 0 != os.system(f'open -b com.sublimetext.4 "{args[0]}"'):
         os.system(f'open -b com.sublimetext.3 "{args[0]}"')
@@ -105,7 +109,7 @@ aliases['localdevice'] = _localdevice
 aliases['ga'] = 'git add'
 aliases['ggpush'] = _ggpush
 aliases['gco'] = 'git checkout'
-aliases['ggpull'] = 'git pull'
+aliases['ggpull'] = _ggpull
 aliases['glog'] = 'git log --oneline --decorate --graph'
 aliases['gd'] = 'git diff'
 aliases['gst'] = 'git status'
