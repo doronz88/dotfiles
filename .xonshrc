@@ -2,12 +2,14 @@
 # XONSH WEBCONFIG END
 
 import os
+import shlex
 from argparse import ArgumentParser
 
 import xonsh
-xontrib load z argcomplete coreutils fzf-widgets jedi
+xontrib load z argcomplete coreutils fzf-widgets jedi prompt_ret_code vox
 
 $DEVICE_SSH_PORT = 2222
+# $DEVICE_SSH_PORT = 4444
 $PROMPT = '{env_name}{BOLD_GREEN}{user}@{hostname}{BOLD_BLUE} {cwd}{branch_color}{curr_branch: {}}{RESET} {BOLD_BLUE}{prompt_end}{RESET} '
 $PATH = ['/usr/local/opt/openjdk/bin',
  '/usr/local/opt/openssl@1.1/bin',
@@ -22,8 +24,11 @@ $PATH = ['/usr/local/opt/openjdk/bin',
  '/usr/local/opt/fzf/bin',
  '/Users/z/Library/Python/3.9/bin',
  '/opt/bin',
- '~/Library/Python/3.8/bin',
- '~/Library/Python/3.10/bin']
+ '/Users/z/Library/Python/3.8/bin',
+ '/Users/z/Library/Python/3.10/bin']
+$PKG_CONFIG_PATH = '/usr/local/opt/openssl@1.1/lib/pkgconfig:/usr/local/opt/curl/lib/pkgconfig:/usr/local/opt/openssl/lib/pkgconfig:/usr/local/opt/readline/lib/pkgconfig'
+$LDFLAGS = '-L/usr/local/opt/openssl@1.1/lib'
+$CPPFLAGS = "-I/usr/local/opt/openssl@1.1/include"
 
 
 $fzf_history_binding = "c-r"  # Ctrl+R
@@ -46,8 +51,8 @@ def _localdevice(args):
     ssh -p $DEVICE_SSH_PORT root@localhost -i ~/.ssh/id_rsa
 
 
-def _ggpush(args):
-	git push origin @(xonsh.built_ins.XSH.env['PROMPT_FIELDS']['curr_branch']())
+def _ggpush(args, *kwargs):
+    git push origin @(xonsh.built_ins.XSH.env['PROMPT_FIELDS']['curr_branch']())
 
 
 def _subl(args):
@@ -91,7 +96,6 @@ aliases['010'] = 'open -b com.SweetScape.010Editor'
 aliases['charm'] = 'open -b com.jetbrains.pycharm.ce'
 aliases['ida'] = 'open -b com.hexrays.ida64'
 aliases['sqlitebrwoser'] = 'open -a sqlitebrowser'
-aliases['pymobiledevice3'] = 'python3 -m pymobiledevice3'
 
 # -- checkra1n
 
@@ -109,3 +113,15 @@ aliases['glog'] = 'git log --oneline --decorate --graph'
 aliases['gd'] = 'git diff'
 aliases['gst'] = 'git status'
 aliases['gcl'] = 'git clone --recurse-submodules'
+
+# -- shell
+
+aliases['l'] = 'ls -lah'
+aliases['la'] = 'ls -lAh'
+aliases['ll'] = 'ls -lh'
+aliases['ls'] = 'ls -G'
+aliases['lsa'] = 'ls -lah'
+
+# -- tools
+
+aliases['pymobiledevice3'] = 'python3 -m pymobiledevice3'
