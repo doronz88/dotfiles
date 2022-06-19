@@ -17,7 +17,7 @@ from xonsh.ansi_colors import register_custom_ansi_style
 
 # -- XONTRIB
 
-XSH.builtins.execx('xontrib load z argcomplete coreutils fzf-widgets jedi prompt_ret_code vox')
+XSH.builtins.execx('xontrib load z argcomplete coreutils fzf-widgets jedi prompt_ret_code vox up')
 
 # -- ENV
 
@@ -28,15 +28,15 @@ XSH.env['PATH'] = ['/usr/local/opt/openjdk/bin',
  '/usr/local/opt/openssl@1.1/bin',
  '/Library/Frameworks/Python.framework/Versions/3.10/bin',
  '/usr/local/bin',
- '/usr/bin',
- '/bin',
  '/usr/sbin',
+ '/usr/bin',
+ '/opt/bin',
  '/sbin',
+ '/bin',
  '/Library/Apple/usr/bin',
  '/Applications/Wireshark.app/Contents/MacOS',
  '/usr/local/opt/fzf/bin',
  '/Users/z/Library/Python/3.9/bin',
- '/opt/bin',
  '/Users/z/Library/Python/3.8/bin',
  '/Users/z/Library/Python/3.10/bin']
 XSH.env['PKG_CONFIG_PATH'] = '/usr/local/opt/openssl@1.1/lib/pkgconfig:/usr/local/opt/curl/lib/pkgconfig:/usr/local/opt/openssl/lib/pkgconfig:/usr/local/opt/readline/lib/pkgconfig'
@@ -125,7 +125,7 @@ register_custom_ansi_style('doronz', ANSI_STYLE)
 XSH.env['XONSH_COLOR_STYLE'] = 'doronz'
 
 
-# -- alias
+# -- ALIAS
 
 def _get_file(args):
     scp -i "~/.ssh/id_rsa" -r -P $DEVICE_SSH_PORT root@localhost:@(args[0]) @(args[1])
@@ -139,8 +139,8 @@ def _localdevice(args):
     ssh -p $DEVICE_SSH_PORT root@localhost -i ~/.ssh/id_rsa
 
 
-def _ggpush(args, *kwargs):
-    XSH.builtins.execx(f'git push origin {XSH.env["PROMPT_FIELDS"]["curr_branch"]()}')
+def _ggpush(args):
+    XSH.builtins.execx(f'git push origin {XSH.env["PROMPT_FIELDS"]["curr_branch"]()} {shlex.join(args)}')
 
 
 def _subl(args):
