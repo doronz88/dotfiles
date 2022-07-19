@@ -95,7 +95,7 @@ PG_STYLE = {
     Name.Decorator: f'{ANSI_STYLE["INTENSE_RED"]}',
     Name.Entity: f'{ANSI_STYLE["INTENSE_WHITE"]}',
     Name.Exception: f'{ANSI_STYLE["INTENSE_PURPLE"]}',
-    Name.Function: f'{ANSI_STYLE["INTENSE_CYAN"]}',
+    Name.Function: f'{ANSI_STYLE["INTENSE_CYAN"]} bold',
     Name.Label: f'{ANSI_STYLE["INTENSE_RED"]}',
     Name.Namespace: f'{ANSI_STYLE["INTENSE_GREEN"]}',
     Name.Other: f'{ANSI_STYLE["WHITE"]}',
