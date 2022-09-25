@@ -215,5 +215,7 @@ aliases['lsa'] = 'ls -lah'
 aliases['pymobiledevice3'] = 'python3 -m pymobiledevice3'
 aliases['rpcclient'] = 'python3 -m rpcclient'
 
+# -- fixes
 
+aliases['uptime'] = '/usr/bin/uptime'
 
