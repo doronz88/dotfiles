@@ -17,7 +17,7 @@ from xonsh.ansi_colors import register_custom_ansi_style
 
 # -- XONTRIB
 
-XSH.builtins.execx('xontrib load z argcomplete coreutils fzf-widgets jedi prompt_ret_code vox up')
+XSH.builtins.execx('xontrib load z argcomplete coreutils fzf-widgets jedi vox up')
 
 # -- ENV
 
