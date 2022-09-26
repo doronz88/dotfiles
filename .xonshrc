@@ -27,6 +27,7 @@ XSH.env['PROMPT'] = '{env_name}{BOLD_GREEN}{user}@{hostname}{BOLD_BLUE} {cwd}{br
 XSH.env['PATH'] = ['/usr/local/opt/openjdk/bin',
  '/usr/local/opt/openssl@1.1/bin',
  '/Library/Frameworks/Python.framework/Versions/3.10/bin',
+ '/opt/homebrew/bin',
  '/usr/local/bin',
  '/usr/sbin',
  '/usr/bin',
