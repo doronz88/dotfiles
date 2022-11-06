@@ -17,7 +17,10 @@ from xonsh.ansi_colors import register_custom_ansi_style
 
 # -- XONTRIB
 
-XSH.builtins.execx('xontrib load z argcomplete coreutils fzf-widgets jedi vox up')
+if XSH.env.get('FORMATTER_DICT') is None:
+    XSH.env['FORMATTER_DICT'] = {}
+
+XSH.builtins.execx('xontrib load z argcomplete coreutils fzf-widgets jedi prompt_ret_code vox up')
 
 # -- ENV
 
@@ -27,7 +30,6 @@ XSH.env['PROMPT'] = '{env_name}{BOLD_GREEN}{user}@{hostname}{BOLD_BLUE} {cwd}{br
 XSH.env['PATH'] = ['/usr/local/opt/openjdk/bin',
  '/usr/local/opt/openssl@1.1/bin',
  '/Library/Frameworks/Python.framework/Versions/3.10/bin',
- '/opt/homebrew/bin',
  '/usr/local/bin',
  '/usr/sbin',
  '/usr/bin',
@@ -37,9 +39,9 @@ XSH.env['PATH'] = ['/usr/local/opt/openjdk/bin',
  '/Library/Apple/usr/bin',
  '/Applications/Wireshark.app/Contents/MacOS',
  '/usr/local/opt/fzf/bin',
- '~/Library/Python/3.9/bin',
- '~/Library/Python/3.8/bin',
- '~/Library/Python/3.10/bin']
+ '/Users/z/Library/Python/3.9/bin',
+ '/Users/z/Library/Python/3.8/bin',
+ '/Users/z/Library/Python/3.10/bin']
 XSH.env['PKG_CONFIG_PATH'] = '/usr/local/opt/openssl@1.1/lib/pkgconfig:/usr/local/opt/curl/lib/pkgconfig:/usr/local/opt/openssl/lib/pkgconfig:/usr/local/opt/readline/lib/pkgconfig'
 XSH.env['LDFLAGS'] = '-L/usr/local/opt/openssl@1.1/lib'
 XSH.env['CPPFLAGS'] = "-I/usr/local/opt/openssl@1.1/include"
@@ -155,7 +157,7 @@ def _rcpull(args):
 
     cd ~/dev/dotfiles
     ggpull
-    cp .xonshrc ~/
+    cp ~/.xonshrc ~/
     cd -
 
 
@@ -208,7 +210,7 @@ aliases['gcl'] = 'git clone --recurse-submodules'
 aliases['l'] = 'ls -lah'
 aliases['la'] = 'ls -lAh'
 aliases['ll'] = 'ls -lh'
-aliases['ls'] = 'ls -G'
+aliases['ls'] = 'ls -F'
 aliases['lsa'] = 'ls -lah'
 
 # -- tools
@@ -216,7 +218,5 @@ aliases['lsa'] = 'ls -lah'
 aliases['pymobiledevice3'] = 'python3 -m pymobiledevice3'
 aliases['rpcclient'] = 'python3 -m rpcclient'
 
-# -- fixes
 
-aliases['uptime'] = '/usr/bin/uptime'
 
