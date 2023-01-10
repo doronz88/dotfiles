@@ -17,10 +17,7 @@ from xonsh.ansi_colors import register_custom_ansi_style
 
 # -- XONTRIB
 
-if XSH.env.get('FORMATTER_DICT') is None:
-    XSH.env['FORMATTER_DICT'] = {}
-
-XSH.builtins.execx('xontrib load z argcomplete coreutils fzf-widgets jedi prompt_ret_code vox up')
+XSH.builtins.execx('xontrib load z argcomplete coreutils fzf-widgets jedi vox up')
 
 # -- ENV
 
@@ -45,7 +42,6 @@ XSH.env['PATH'] = ['/usr/local/opt/openjdk/bin',
 XSH.env['PKG_CONFIG_PATH'] = '/usr/local/opt/openssl@1.1/lib/pkgconfig:/usr/local/opt/curl/lib/pkgconfig:/usr/local/opt/openssl/lib/pkgconfig:/usr/local/opt/readline/lib/pkgconfig'
 XSH.env['LDFLAGS'] = '-L/usr/local/opt/openssl@1.1/lib'
 XSH.env['CPPFLAGS'] = "-I/usr/local/opt/openssl@1.1/include"
-XSH.env['LSCOLORS'] = 'Gxfxcxdxbxegedabagacad'
 
 
 XSH.env['fzf_history_binding'] = "c-r"  # Ctrl+R
@@ -211,8 +207,9 @@ aliases['gcl'] = 'git clone --recurse-submodules'
 aliases['l'] = 'ls -lah'
 aliases['la'] = 'ls -lAh'
 aliases['ll'] = 'ls -lh'
-aliases['ls'] = 'ls -FG'
+aliases['ls'] = 'ls -F'
 aliases['lsa'] = 'ls -lah'
+aliases['grt'] = lambda: os.chdir($(git rev-parse --show-toplevel).strip())
 
 # -- tools
 
